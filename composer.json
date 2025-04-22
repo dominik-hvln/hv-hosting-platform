@@ -1,0 +1,77 @@
+{
+  "name": "laravel/hosting-system",
+  "type": "project",
+  "description": "Modern hosting system with autoscaling capabilities",
+  "keywords": ["laravel", "hosting", "autoscaling", "cloudlinux", "whmcs"],
+  "license": "MIT",
+  "require": {
+    "php": "^8.3",
+    "guzzlehttp/guzzle": "^7.8",
+    "laravel/framework": "^12.0",
+    "laravel/sanctum": "^4.0",
+    "laravel/tinker": "^2.9",
+    "spatie/laravel-permission": "^6.3",
+    "spatie/laravel-backup": "^8.5",
+    "pragmarx/google2fa-laravel": "^2.1",
+    "bacon/bacon-qr-code": "^2.0",
+    "league/flysystem-sftp-v3": "^3.24"
+  },
+  "require-dev": {
+    "fakerphp/faker": "^1.23",
+    "laravel/pint": "^1.14",
+    "laravel/sail": "^1.27",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.0",
+    "phpunit/phpunit": "^10.5",
+    "spatie/laravel-ignition": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-update-cmd": [
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ],
+    "test": [
+      "@php artisan test"
+    ],
+    "format": [
+      "./vendor/bin/pint"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
