@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ReferralController;
 use App\Http\Controllers\Api\PromoCodeController;
 use App\Http\Controllers\Api\HostingAccountController;
 use App\Http\Controllers\Api\StatisticsController;
+use App\Http\Controllers\Api\TwoFactorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,9 @@ Route::prefix('v1')->group(function () {
             ->name('verification.send');
 
         // 2FA
-        Route::post('/2fa/enable', [AuthController::class, 'enable2FA']);
-        Route::post('/2fa/confirm', [AuthController::class, 'confirm2FA']);
-        Route::post('/2fa/disable', [AuthController::class, 'disable2FA']);
+        Route::post('/2fa/enable', [TwoFactorController::class, 'enable']);
+        Route::post('/2fa/confirm', [TwoFactorController::class, 'confirm']);
+        Route::post('/2fa/disable', [TwoFactorController::class, 'disable']);
 
         // Portfel
         Route::prefix('wallet')->group(function () {
